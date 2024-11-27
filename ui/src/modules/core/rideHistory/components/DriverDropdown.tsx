@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 import './DriverDropdown.css';
 
-function DriverDropdown({ onDataFromChild }) {
+type DriverDropdownProps = {
+	onDataFromChild: (selectedDriver: string) => void;
+};
+
+type Driver = {
+	id: number;
+	name: string;
+};
+
+function DriverDropdown({ onDataFromChild }: DriverDropdownProps) {
 	const [drivers, setDrivers] = useState([]);
 	const [selectedDriver, setSelectedDriver] = useState("");
 
@@ -30,7 +39,7 @@ function DriverDropdown({ onDataFromChild }) {
 		getAllDrivers();
 	}, []);
 
-	const handleChange = (event) => {
+	const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const selectedValue = event.target.value;
 		setSelectedDriver(selectedValue);
 		onDataFromChild(selectedValue);
@@ -41,7 +50,7 @@ function DriverDropdown({ onDataFromChild }) {
 			<label htmlFor="driver-select"></label>
 			<select id="driver-select" value={selectedDriver} onChange={handleChange}>
 				<option value="">Todos os motoristas</option>
-				{drivers.map((driver) => (
+				{drivers.map((driver: Driver) => (
 					<option key={driver.id} value={driver.id}>
 						{driver.name}
 					</option>

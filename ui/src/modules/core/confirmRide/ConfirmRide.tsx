@@ -4,19 +4,65 @@ import { StringFormatter } from '../../../utils/StringFormatter.js';
 import { UnitConverter } from '../../../utils/UnitConverter.js';
 import { useNavigate } from 'react-router';
 
-function ConfirmRide({ rideRequest, rideResult }) {
-	const [selectedDriverId, setSelectedDriverId] = useState(null);
+type RideRequest = {
+	customer_id: string;
+	origin: string;
+	destination: string;
+};
+
+type RideResult = {
+	result: {
+		destination: {
+			latitude: number;
+			longitude: number;
+		};
+		distance: number;
+		duration: string;
+		options: Array<{
+			value: number;
+			id: number;
+			name: string;
+			description: string;
+			vehicle: string;
+			review: {
+				comment: string;
+				rating: string;
+			};
+		}>;
+		origin: {
+			latitude: number;
+			longitude: number;
+		};
+		routeResponse: {
+			routes: Array<{
+				distanceMeters: number;
+				duration: string;
+				polyline: {
+					encodedPolyline: string;
+				};
+			}>;
+		};
+	};
+};
+
+type ConfirmRideProps = {
+	rideRequest: RideRequest;
+	rideResult: RideResult;
+};
+
+function ConfirmRide({ rideRequest, rideResult }: ConfirmRideProps) {
+	const [selectedDriverId, setSelectedDriverId] = useState<string | number | null>(null);
 
 	const navigate = useNavigate();
 
-	const handleDriverSelect = (driverId) => {
+	const handleDriverSelect = (driverId: number | string) => {
 		setSelectedDriverId(driverId);
 	};
 
 	const originCoordinates = rideResult.result.origin;
 	const destinationCoordinates = rideResult.result.destination;
 
-	function formatCoordinates(coordinates: any): string {
+	function formatCoordinates(coordinates: { latitude: number; longitude: number; }): string {
 		return `${coordinates.latitude},${coordinates.longitude}`;
 	}
 
@@ -29,6 +75,11 @@ function ConfirmRide({ rideRequest, rideResult }) {
 		}
 
 		const selectedDriver = rideResult.result.options.find(driver => driver.id === selectedDriverId);
+
+		if (!selectedDriver) {
+			alert("Selected driver is not defined");
+			throw new Error("Selected driver is not defined");
+		}
 
 		const requestData = {
 			customer_id: rideRequest.customer_id,
