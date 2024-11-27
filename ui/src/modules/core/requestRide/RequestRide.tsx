@@ -5,8 +5,8 @@ import './RequestRide.css';
 function RequestRide() {
 	const [rideFormData, setFormData] = useState({ origin: "", destination: "" });
 	const [isRideSuccessful, setIsRideSuccessful] = useState(false);
-	const [rideRequest, setRideRequest] = useState<unknown>(null);
-	const [rideResult, setRideResult] = useState<unknown>(null);
+	const [rideRequest, setRideRequest] = useState<RideRequest | null>(null);
+	const [rideResult, setRideResult] = useState<RideResult | null>(null);
 	const [userId, setUserId] = useState('');
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,11 +61,11 @@ function RequestRide() {
 					<form className='request-ride-form' onSubmit={handleSubmit}>
 						<div className="user-id-container">
 							<label htmlFor="origin">Id do usuário</label>
-							<input 
-								type="text" 
-								id="origin" 
+							<input
+								type="text"
+								id="origin"
 								value={userId}
-								onChange={(e) => setUserId(e.target.value)} 
+								onChange={(e) => setUserId(e.target.value)}
 								placeholder={`Id do usuário ativo na sessão: ${activeUserId}`} />
 						</div>
 
@@ -101,10 +101,52 @@ function RequestRide() {
 					</form>
 				</div>
 			</div>
-
-			{isRideSuccessful && <ConfirmRide rideRequest={rideRequest} rideResult={rideResult} />}
+			{rideRequest && isRideSuccessful && rideResult && (
+				<ConfirmRide rideRequest={rideRequest} rideResult={rideResult} />
+			)}
 		</>
 	);
 }
+
+type RideRequest = {
+	customer_id: string;
+	origin: string;
+	destination: string;
+};
+
+type RideResult = {
+	result: {
+		destination: {
+			latitude: number;
+			longitude: number;
+		};
+		distance: number;
+		duration: string;
+		options: Array<{
+			value: number;
+			id: number;
+			name: string;
+			description: string;
+			vehicle: string;
+			review: {
+				comment: string;
+				rating: string;
+			};
+		}>;
+		origin: {
+			latitude: number;
+			longitude: number;
+		};
+		routeResponse: {
+			routes: Array<{
+				distanceMeters: number;
+				duration: string;
+				polyline: {
+					encodedPolyline: string;
+				};
+			}>;
+		};
+	};
+};
 
 export default RequestRide;
