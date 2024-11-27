@@ -1,0 +1,119 @@
+.login-form-main {
+	width: 800px;
+	height: 600px;
+	display: flex;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.login-illustration-container {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(220, 241, 220);
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.login-form-container {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+	background-color: rgb(255, 255, 255);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.login-illustration {
+	height: 60%;
+	width: auto;
+}
+
+.shopper-logo-container {
+	width: 100%;
+	height: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.shopper-logo {
+	height: 100%;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	height: 50%;
+	width: 70%;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.login-email-container {
+	display: flex;
+	flex-direction: column;
+	height: 40%;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-password-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 40%;
+	width: 100%;
+}
+
+.login-email-container input,
+.login-password-container input {
+	height: 30%;
+	width: 80%;
+}
+
+.register {
+	width: 100%;
+	height: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.button-login-container {
+	height: 20%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button-login {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 70%;
+	min-height: 40px;
+	max-height: 40px;
+	width: 80%;
+	max-width: 170px;
+	min-width: 170px;
+	border-radius: 5px;
+	transition: 0.5s;
+	background-color: black;
+	color: white;
+}
+
+.button-login:hover {
+	cursor: pointer;
+	background-color: #038c6b;
+	color: #ffffff;
+}
