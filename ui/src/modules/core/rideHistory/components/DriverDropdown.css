@@ -1,0 +1,12 @@
+.driver-dropdown {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20%;
+}
+
+.driver-dropdown select {
+	height: 40%;
+	width: 100%;
+}
