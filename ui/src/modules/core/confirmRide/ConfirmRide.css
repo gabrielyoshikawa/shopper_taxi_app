@@ -1,0 +1,112 @@
+main {
+	width: 1000px;
+	height: 800px;
+	display: flex;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.confirm-ride-pop-up {
+	flex-direction: column;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.p-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 50%;
+}
+
+.route-data-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	height: 10%;
+}
+
+.inputs-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 80%;
+}
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 5px;
+}
+
+.input-group label {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+}
+
+[readonly] {
+	border: 1px solid #ccc;
+	background-color: #eee;
+}
+
+.drivers-container {
+	height: 40%;
+	width: 100%;
+	display: flex;
+	overflow: auto;
+}
+
+.drivers-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.drivers-table th,
+.drivers-table td {
+	padding: 12px;
+	text-align: left;
+	border: 1px solid #ddd;
+}
+
+.drivers-table th {
+	position: sticky;
+	top: 0;
+	background-color: #f1f1f1;
+	z-index: 1;
+	font-weight: bold;
+	text-align: center;
+}
+
+.drivers-table tr:nth-child(even) td {
+	background-color: #f9f9f9;
+}
+
+.drivers-table td {
+	background-color: #fff;
+	font-size: 14px;
+	text-align: center;
+}
+
+.confirmRide {
+	width: 25%;
+	height: 8%;
+	margin-bottom: 5px;
+}
+
+.map {
+	width: 80%;
+	height: 30%;
+	border: 0;
+}
