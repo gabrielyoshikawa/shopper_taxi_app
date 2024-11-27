@@ -3,6 +3,20 @@ import './RideHistory.css';
 import DriverDropdown from './components/DriverDropdown';
 import { useState } from 'react';
 
+type Ride = {
+	id: number;
+	date: string;
+	driver: {
+		id: number;
+		name: string;
+	};
+	origin: string;
+	destination: string;
+	distance: number;
+	duration: string;
+	value: string;
+};
+
 function RideHistory() {
 	const [dataFromChild, setDataFromChild] = useState('');
 	const [rides, setRides] = useState([]);
@@ -19,8 +33,8 @@ function RideHistory() {
 		try {
 
 			const fetchUrl = !driverId
-			? `http://localhost:8080/api/ride/${userId}`
-			: `http://localhost:8080/api/ride/${userId}?driver_id=${driverId}`;
+				? `http://localhost:8080/api/ride/${userId}`
+				: `http://localhost:8080/api/ride/${userId}?driver_id=${driverId}`;
 
 			if (!userId) {
 				alert("User id is empty");
@@ -75,7 +89,7 @@ function RideHistory() {
 						</thead>
 						<tbody>
 							{rides.length > 0 ? (
-								rides.map((ride) => (
+								rides.map((ride: Ride) => (
 									<tr key={ride.id}>
 										<td>{new Date(ride.date).toLocaleString()}</td>
 										<td>{ride.driver?.name}</td>
@@ -83,7 +97,7 @@ function RideHistory() {
 										<td>{ride.destination}</td>
 										<td>{ride.distance} km</td>
 										<td>{ride.duration}</td>
-										<td>{StringFormatter.formatValueToBRL(ride.value)}</td>
+										<td>{StringFormatter.formatValueToBRL(Number(ride.value))}</td>
 									</tr>
 								))
 							) : (
