@@ -5,7 +5,7 @@ import { apiRouter } from "./router.js";
 const app = express();
 
 app.use(cors({
-	origin: "http://localhost:5173",
+	origin: ["http://localhost", "http://localhost:80"],
 	methods: "GET,POST,PUT,DELETE,PATCH",
 	allowedHeaders: "Content-Type,Authorization"
 }));
