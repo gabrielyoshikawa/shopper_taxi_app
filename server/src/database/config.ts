@@ -2,11 +2,11 @@ import mysql from "mysql2/promise";
 import "dotenv/config";
 
 export const databasePool = mysql.createPool({
-	host: process.env["MYSQL_HOST"],
-	user: process.env["MYSQL_USER"],
-	password: process.env["MYSQL_PASSWORD"],
-	database: process.env["MYSQL_DATABASE"],
-	port: Number(process.env["MYSQL_PORT"]),
+	host: process.env["DB_ENDPOINT"],
+	user: process.env["DB_USER"],
+	password: process.env["DB_PASSWORD"],
+	database: process.env["DB_DATABASE"],
+	port: Number(process.env["DB_PORT"]),
 	connectTimeout: 300_000,
 	waitForConnections: true,
 	connectionLimit: 10,
